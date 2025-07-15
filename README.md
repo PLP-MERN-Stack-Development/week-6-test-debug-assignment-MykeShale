@@ -69,6 +69,52 @@ mern-testing/
 - Cypress/Playwright: End-to-end testing framework
 - MongoDB Memory Server: In-memory MongoDB for testing
 
+## Testing & Debugging Strategy
+
+### Server Side
+- **Unit Testing:** Jest is used for unit tests in `server/tests/unit/`. Example: utility and error handler tests.
+- **Integration Testing:** Supertest and MongoDB Memory Server are used for API and DB integration tests in `server/tests/integration/`.
+- **Debugging:**
+  - Global error handler middleware is implemented in `server/app.js`.
+  - Logging and performance monitoring via `morgan`.
+  - Use `console.log` or a logger for additional debugging.
+- **How to Run:**
+  ```sh
+  cd server
+  npm run test:unit         # Run unit tests
+  npm run test:integration  # Run integration tests
+  npm test                  # Run all tests with coverage
+  ```
+- **Coverage:**
+  - Coverage reports are generated in `server/coverage/`.
+
+### Client Side
+- **Unit Testing:** Jest and React Testing Library are used for unit tests in `client/src/tests/unit/`.
+- **Integration Testing:** Integration tests are in `client/src/tests/integration/`.
+- **E2E Testing:** Cypress is set up in `client/cypress/e2e/` for end-to-end user flow tests.
+- **Error Handling:**
+  - React ErrorBoundary component is used for catching UI errors.
+- **Debugging:**
+  - Use browser dev tools for inspecting React components and state.
+  - Error boundaries help catch and display UI errors.
+- **How to Run:**
+  ```sh
+  cd client
+  npx jest src/tests/unit --coverage         # Run unit tests
+  npx jest src/tests/integration --coverage   # Run integration tests
+  npx cypress open                           # Run E2E tests interactively
+  npx cypress run                            # Run E2E tests headlessly
+  ```
+- **Coverage:**
+  - Coverage reports are generated after running Jest with `--coverage`.
+
+### Screenshots
+- Add screenshots of your coverage reports (HTML or terminal output) to this README or a `screenshots/` folder.
+
+### Notes
+- Update test and E2E URLs as needed for your local setup.
+- Expand tests for more components, hooks, and user flows for higher coverage and reliability.
+
 ## Submission
 
 Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
